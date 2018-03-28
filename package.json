@@ -4,6 +4,9 @@
   "description": "A node.js based Raspberry PI server",
   "main": "out/server.js",
   "scripts": {
+    "install": "npm i",
+    "build": "tsc -p tsconfig.json",
+    "start": "node out/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -11,9 +14,9 @@
     "url": "git+https://github.com/doronguttman/node-pi-server.git"
   },
   "keywords": [
-    "raspberry;",
-    "pi;",
-    "node;",
+    "raspberry",
+    "pi",
+    "node",
     "server"
   ],
   "author": "Doron Guttman",
@@ -27,6 +30,7 @@
   },
   "devDependencies": {
     "@types/express": "^4.11.1",
-    "@types/node": "^9.6.0"
+    "@types/node": "^9.6.0",
+    "@types/onoff": "^0.0.27"
   }
 }
