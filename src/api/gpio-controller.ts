@@ -1,13 +1,12 @@
 import { Express, Request, Response, NextFunction } from "express";
 import { Gpio } from "onoff";
-import { isNumber } from "util";
 
 namespace GpioManager {
     const GPIO_PINS = [4, 5, 6, 12, 13, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27];
 
     function readPin(pin: number): Promise<number> {
-        if (!GPIO_PINS.includes(pin)) throw new Error("Pin number outside of range");
-        
+        if (!GPIO_PINS.includes(pin)) throw new Error("Invalid pin number");
+
         let gpio = new Gpio(pin, "in");
         return new Promise<number>((resolve, reject) => {
             gpio.read((err, value) => {
@@ -25,7 +24,7 @@ namespace GpioManager {
     export async function read(pin: number): Promise<number>;
     export async function read(): Promise<{ [pin: number]: number }>
     export async function read(pin?: number ): Promise<number | { [pin: number]: number }> {
-        if (pin) return await readPin(pin);
+        if (typeof pin !== "undefined") return await readPin(pin);
 
         let result: { [pin: number]: number } = {};
         for (let i = 0; i < GPIO_PINS.length; i++) {
@@ -55,13 +54,9 @@ export class GpioController {
     }
 
     private getPin(req: Request, res: Response, next: NextFunction): void {
-        let pin = req.param("pin");
-        if (!isNumber(pin)) {
-            res.status(400).send("invalid pin number");
-            return;
-        }
+        let pin = Number(req.param("pin"));
 
-        GpioManager.read(Number(pin))
+        GpioManager.read(pin)
             .then(result => {
                 res.status(200).send(result);
             })
