@@ -6,19 +6,21 @@ class LoggingMiddleware {
         console.log(LoggingMiddleware.name, `PROD: ${PROD}`);
     }
 
-    public logIncoming(req: Request, res: Response, next: NextFunction) : void {
-        console.log(`${new Date().toISOString()} >>> ${req.method} ${req.url}`);
-        next();
-    }
+    public logRequestResponse(req: Request, res: Response, next: NextFunction) : void {
+        let startTime = new Date();
+        console.log(`${startTime.toISOString()} >>> ${req.method} ${req.url}`);
 
-    public logOutgoing(req: Request, res: Response, next: NextFunction) : void {
-        console.log(`${new Date().toISOString()} <<< ${req.method} ${req.url}: ${res.statusCode}`);
+        res.on("finish", () => {
+            let endTime = new Date();
+            let duration = endTime.getTime() - startTime.getTime();
+            console.log(`${endTime.toISOString()} <<< ${req.method} ${req.url}: ${res.statusCode} [${duration}msec]`);
+        })
         next();
     }
 
     public logErrors(err: any, req: Request, res: Response, next: NextFunction) :void {
         let errorCode = err.statusCode && err.statusCode || 500;
-        console.error(`${new Date().toISOString()} <<< ${req.method} ${req.url}: ${errorCode}`, err.stack);
+        console.error(`${new Date().toISOString()} ERR ${req.method} ${req.url}: ${errorCode}`, err.stack && err.stack || err);
         
         let body = PROD
             ? err && err.statusCode && err.message || "Oops... something went wrong..."

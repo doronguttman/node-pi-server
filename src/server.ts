@@ -6,12 +6,11 @@ import initApi from "./api/index";
 const port = process.env["PORT"] && Number(process.env["PORT"]) || 80;
 const app = express();
 
-app.use(loggingMiddleware.logIncoming);
+app.use(loggingMiddleware.logRequestResponse);
 
 initApi(app);
 
 app.use("/", staticFilesMiddleware.mount(`${__dirname}/../static`));
-app.use(loggingMiddleware.logOutgoing);
 app.use(loggingMiddleware.logErrors);
 
 app.listen(port, () => {
