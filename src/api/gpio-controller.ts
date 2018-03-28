@@ -44,9 +44,11 @@ export class GpioController {
     }
 
     private getAll(req: Request, res: Response, next: NextFunction): void {
+        console.log("getAll");
+        
         GpioManager.read()
             .then(result => {
-                res.status(200).send(result);
+                res.status(200).json(result);
             })
             .catch(err => {
                 res.status(500).send(err && (err.stack || (err.toString && err.toString()) || String(err)));
@@ -55,10 +57,11 @@ export class GpioController {
 
     private getPin(req: Request, res: Response, next: NextFunction): void {
         let pin = Number(req.params["pin"]);
+        console.log("getPin", pin);
 
         GpioManager.read(pin)
             .then(result => {
-                res.status(200).send(result);
+                res.status(200).json(result);
             })
             .catch(err => {
                 res.status(500).send(err && (err.stack || (err.toString && err.toString()) || String(err)));
