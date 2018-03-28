@@ -4,8 +4,8 @@
   "description": "A node.js based Raspberry PI server",
   "main": "out/server.js",
   "scripts": {
-    "install": "npm i",
     "build": "tsc -p tsconfig.json",
+    "make": "npm i && npm run build",
     "start": "node out/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

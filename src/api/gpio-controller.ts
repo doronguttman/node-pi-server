@@ -1,5 +1,5 @@
 import { Express, Request, Response, NextFunction } from "express";
-// import { Gpio } from "onoff";
+import { Gpio } from "onoff";
 
 namespace GpioManager {
     const GPIO_PINS = [4, 5, 6, 12, 13, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27];
