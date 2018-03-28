@@ -1,0 +1,62 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+class HttpErrorBase extends Error {
+}
+exports.HttpErrorBase = HttpErrorBase;
+class CustomError extends HttpErrorBase {
+    constructor(statusCode, message) {
+        super(message);
+        this.statusCode = statusCode;
+    }
+}
+exports.CustomError = CustomError;
+class BadRequestError extends HttpErrorBase {
+    constructor(message = "Bad request") {
+        super(message);
+        this.statusCode = 400;
+    }
+}
+exports.BadRequestError = BadRequestError;
+class UnauthorizedError extends HttpErrorBase {
+    constructor(message = "Unauthorized") {
+        super(message);
+        this.statusCode = 401;
+    }
+}
+exports.UnauthorizedError = UnauthorizedError;
+class PaymentRequiredError extends HttpErrorBase {
+    constructor(message = "Payment required") {
+        super(message);
+        this.statusCode = 402;
+    }
+}
+exports.PaymentRequiredError = PaymentRequiredError;
+class ForbiddenError extends HttpErrorBase {
+    constructor(message = "Forbidden") {
+        super(message);
+        this.statusCode = 403;
+    }
+}
+exports.ForbiddenError = ForbiddenError;
+class NotFoundError extends HttpErrorBase {
+    constructor(message = "Not found") {
+        super(message);
+        this.statusCode = 404;
+    }
+}
+exports.NotFoundError = NotFoundError;
+class InternalServerError extends HttpErrorBase {
+    constructor(message = "Internal server error") {
+        super(message);
+        this.statusCode = 500;
+    }
+}
+exports.InternalServerError = InternalServerError;
+class NotImplementedError extends HttpErrorBase {
+    constructor(message = "Not implemented") {
+        super(message);
+        this.statusCode = 501;
+    }
+}
+exports.NotImplementedError = NotImplementedError;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaHR0cC1lcnJvcnMuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi9zcmMvdHlwZXMvaHR0cC1lcnJvcnMudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFJQSxtQkFBb0MsU0FBUSxLQUFLO0NBRWhEO0FBRkQsc0NBRUM7QUFFRCxpQkFBeUIsU0FBUSxhQUFhO0lBQzFDLFlBQVksVUFBa0IsRUFBRSxPQUFlO1FBQzNDLEtBQUssQ0FBQyxPQUFPLENBQUMsQ0FBQztRQUNmLElBQUksQ0FBQyxVQUFVLEdBQUcsVUFBVSxDQUFDO0lBQ2pDLENBQUM7Q0FHSjtBQVBELGtDQU9DO0FBRUQscUJBQTZCLFNBQVEsYUFBYTtJQUM5QyxZQUFZLFVBQWtCLGFBQWE7UUFDdkMsS0FBSyxDQUFDLE9BQU8sQ0FBQyxDQUFDO1FBR0gsZUFBVSxHQUFHLEdBQUcsQ0FBQztJQUZqQyxDQUFDO0NBR0o7QUFORCwwQ0FNQztBQUVELHVCQUErQixTQUFRLGFBQWE7SUFDaEQsWUFBWSxVQUFrQixjQUFjO1FBQ3hDLEtBQUssQ0FBQyxPQUFPLENBQUMsQ0FBQztRQUdILGVBQVUsR0FBRyxHQUFHLENBQUM7SUFGakMsQ0FBQztDQUdKO0FBTkQsOENBTUM7QUFFRCwwQkFBa0MsU0FBUSxhQUFhO0lBQ25ELFlBQVksVUFBa0Isa0JBQWtCO1FBQzVDLEtBQUssQ0FBQyxPQUFPLENBQUMsQ0FBQztRQUdILGVBQVUsR0FBRyxHQUFHLENBQUM7SUFGakMsQ0FBQztDQUdKO0FBTkQsb0RBTUM7QUFFRCxvQkFBNEIsU0FBUSxhQUFhO0lBQzdDLFlBQVksVUFBa0IsV0FBVztRQUNyQyxLQUFLLENBQUMsT0FBTyxDQUFDLENBQUM7UUFHSCxlQUFVLEdBQUcsR0FBRyxDQUFDO0lBRmpDLENBQUM7Q0FHSjtBQU5ELHdDQU1DO0FBRUQsbUJBQTJCLFNBQVEsYUFBYTtJQUM1QyxZQUFZLFVBQWtCLFdBQVc7UUFDckMsS0FBSyxDQUFDLE9BQU8sQ0FBQyxDQUFDO1FBR0gsZUFBVSxHQUFHLEdBQUcsQ0FBQztJQUZqQyxDQUFDO0NBR0o7QUFORCxzQ0FNQztBQUVELHlCQUFpQyxTQUFRLGFBQWE7SUFDbEQsWUFBWSxVQUFrQix1QkFBdUI7UUFDakQsS0FBSyxDQUFDLE9BQU8sQ0FBQyxDQUFDO1FBR0gsZUFBVSxHQUFHLEdBQUcsQ0FBQztJQUZqQyxDQUFDO0NBR0o7QUFORCxrREFNQztBQUVELHlCQUFpQyxTQUFRLGFBQWE7SUFDbEQsWUFBWSxVQUFrQixpQkFBaUI7UUFDM0MsS0FBSyxDQUFDLE9BQU8sQ0FBQyxDQUFDO1FBR0gsZUFBVSxHQUFHLEdBQUcsQ0FBQztJQUZqQyxDQUFDO0NBR0o7QUFORCxrREFNQyIsInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCBpbnRlcmZhY2UgSUh0dHBFcnJvciBleHRlbmRzIEVycm9yIHtcclxuICAgIGVycm9yQ29kZTogbnVtYmVyO1xyXG59XHJcblxyXG5leHBvcnQgYWJzdHJhY3QgY2xhc3MgSHR0cEVycm9yQmFzZSBleHRlbmRzIEVycm9yIHtcclxuICAgIHB1YmxpYyBhYnN0cmFjdCByZWFkb25seSBzdGF0dXNDb2RlOiBudW1iZXI7XHJcbn1cclxuXHJcbmV4cG9ydCBjbGFzcyBDdXN0b21FcnJvciBleHRlbmRzIEh0dHBFcnJvckJhc2Uge1xyXG4gICAgY29uc3RydWN0b3Ioc3RhdHVzQ29kZTogbnVtYmVyLCBtZXNzYWdlOiBzdHJpbmcpIHtcclxuICAgICAgICBzdXBlcihtZXNzYWdlKTtcclxuICAgICAgICB0aGlzLnN0YXR1c0NvZGUgPSBzdGF0dXNDb2RlO1xyXG4gICAgfVxyXG5cclxuICAgIHB1YmxpYyByZWFkb25seSBzdGF0dXNDb2RlOiBudW1iZXI7XHJcbn1cclxuXHJcbmV4cG9ydCBjbGFzcyBCYWRSZXF1ZXN0RXJyb3IgZXh0ZW5kcyBIdHRwRXJyb3JCYXNlIHtcclxuICAgIGNvbnN0cnVjdG9yKG1lc3NhZ2U6IHN0cmluZyA9IFwiQmFkIHJlcXVlc3RcIikge1xyXG4gICAgICAgIHN1cGVyKG1lc3NhZ2UpO1xyXG4gICAgfVxyXG5cclxuICAgIHB1YmxpYyByZWFkb25seSBzdGF0dXNDb2RlID0gNDAwO1xyXG59XHJcblxyXG5leHBvcnQgY2xhc3MgVW5hdXRob3JpemVkRXJyb3IgZXh0ZW5kcyBIdHRwRXJyb3JCYXNlIHtcclxuICAgIGNvbnN0cnVjdG9yKG1lc3NhZ2U6IHN0cmluZyA9IFwiVW5hdXRob3JpemVkXCIpIHtcclxuICAgICAgICBzdXBlcihtZXNzYWdlKTtcclxuICAgIH1cclxuICAgIFxyXG4gICAgcHVibGljIHJlYWRvbmx5IHN0YXR1c0NvZGUgPSA0MDE7XHJcbn1cclxuXHJcbmV4cG9ydCBjbGFzcyBQYXltZW50UmVxdWlyZWRFcnJvciBleHRlbmRzIEh0dHBFcnJvckJhc2Uge1xyXG4gICAgY29uc3RydWN0b3IobWVzc2FnZTogc3RyaW5nID0gXCJQYXltZW50IHJlcXVpcmVkXCIpIHtcclxuICAgICAgICBzdXBlcihtZXNzYWdlKTtcclxuICAgIH1cclxuXHJcbiAgICBwdWJsaWMgcmVhZG9ubHkgc3RhdHVzQ29kZSA9IDQwMjtcclxufVxyXG5cclxuZXhwb3J0IGNsYXNzIEZvcmJpZGRlbkVycm9yIGV4dGVuZHMgSHR0cEVycm9yQmFzZSB7XHJcbiAgICBjb25zdHJ1Y3RvcihtZXNzYWdlOiBzdHJpbmcgPSBcIkZvcmJpZGRlblwiKSB7XHJcbiAgICAgICAgc3VwZXIobWVzc2FnZSk7XHJcbiAgICB9XHJcbiAgICBcclxuICAgIHB1YmxpYyByZWFkb25seSBzdGF0dXNDb2RlID0gNDAzO1xyXG59XHJcblxyXG5leHBvcnQgY2xhc3MgTm90Rm91bmRFcnJvciBleHRlbmRzIEh0dHBFcnJvckJhc2Uge1xyXG4gICAgY29uc3RydWN0b3IobWVzc2FnZTogc3RyaW5nID0gXCJOb3QgZm91bmRcIikge1xyXG4gICAgICAgIHN1cGVyKG1lc3NhZ2UpO1xyXG4gICAgfVxyXG5cclxuICAgIHB1YmxpYyByZWFkb25seSBzdGF0dXNDb2RlID0gNDA0O1xyXG59XHJcblxyXG5leHBvcnQgY2xhc3MgSW50ZXJuYWxTZXJ2ZXJFcnJvciBleHRlbmRzIEh0dHBFcnJvckJhc2Uge1xyXG4gICAgY29uc3RydWN0b3IobWVzc2FnZTogc3RyaW5nID0gXCJJbnRlcm5hbCBzZXJ2ZXIgZXJyb3JcIikge1xyXG4gICAgICAgIHN1cGVyKG1lc3NhZ2UpO1xyXG4gICAgfVxyXG5cclxuICAgIHB1YmxpYyByZWFkb25seSBzdGF0dXNDb2RlID0gNTAwO1xyXG59XHJcblxyXG5leHBvcnQgY2xhc3MgTm90SW1wbGVtZW50ZWRFcnJvciBleHRlbmRzIEh0dHBFcnJvckJhc2Uge1xyXG4gICAgY29uc3RydWN0b3IobWVzc2FnZTogc3RyaW5nID0gXCJOb3QgaW1wbGVtZW50ZWRcIikge1xyXG4gICAgICAgIHN1cGVyKG1lc3NhZ2UpO1xyXG4gICAgfVxyXG5cclxuICAgIHB1YmxpYyByZWFkb25seSBzdGF0dXNDb2RlID0gNTAxO1xyXG59Il19

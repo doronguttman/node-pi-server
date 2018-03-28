@@ -1,11 +1,12 @@
 import { Express, Request, Response, NextFunction } from "express";
+import { NotFoundError } from "../types/http-errors";
 import { Gpio } from "onoff";
 
 namespace GpioManager {
     const GPIO_PINS = [4, 5, 6, 12, 13, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27];
 
     function readPin(pin: number): Promise<number> {
-        if (!GPIO_PINS.includes(pin)) throw new Error("Invalid pin number");
+        if (!GPIO_PINS.includes(pin)) throw new NotFoundError();
 
         let gpio = new Gpio(pin, "in");
         return new Promise<number>((resolve, reject) => {
@@ -23,7 +24,7 @@ namespace GpioManager {
 
     export async function read(pin: number): Promise<number>;
     export async function read(): Promise<{ [pin: number]: number }>
-    export async function read(pin?: number ): Promise<number | { [pin: number]: number }> {
+    export async function read(pin?: number): Promise<number | { [pin: number]: number }> {
         if (typeof pin !== "undefined") return await readPin(pin);
 
         let result: { [pin: number]: number } = {};
@@ -34,7 +35,7 @@ namespace GpioManager {
         return result;
     }
 
-    
+
 }
 
 export class GpioController {
@@ -45,14 +46,12 @@ export class GpioController {
 
     private getAll(req: Request, res: Response, next: NextFunction): void {
         console.log("getAll");
-        
+
         GpioManager.read()
             .then(result => {
                 res.status(200).json(result);
             })
-            .catch(err => {
-                res.status(500).send(err && (err.stack || (err.toString && err.toString()) || String(err)));
-            });
+            .catch(err => next(err));
     }
 
     private getPin(req: Request, res: Response, next: NextFunction): void {
@@ -63,8 +62,6 @@ export class GpioController {
             .then(result => {
                 res.status(200).json(result);
             })
-            .catch(err => {
-                res.status(500).send(err && (err.stack || (err.toString && err.toString()) || String(err)));
-            });
+            .catch(err => next(err));
     }
 }
