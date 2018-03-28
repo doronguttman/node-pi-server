@@ -1,0 +1,7 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const AUTHORIZED_USERS = {
+    "doronguttman": true
+};
+exports.default = AUTHORIZED_USERS;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYXV0aG9yaXplZC11c2Vycy5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy9hcGkvdGVsZWdyYW0vYXV0aG9yaXplZC11c2Vycy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUFBLE1BQU0sZ0JBQWdCLEdBQW9DO0lBQ3RELGNBQWMsRUFBRSxJQUFJO0NBQ3ZCLENBQUE7QUFFRCxrQkFBZSxnQkFBZ0IsQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbImNvbnN0IEFVVEhPUklaRURfVVNFUlM6IHsgW3VzZXJuYW1lOiBzdHJpbmddOiBib29sZWFuIH0gPSB7XHJcbiAgICBcImRvcm9uZ3V0dG1hblwiOiB0cnVlXHJcbn1cclxuXHJcbmV4cG9ydCBkZWZhdWx0IEFVVEhPUklaRURfVVNFUlM7Il19
