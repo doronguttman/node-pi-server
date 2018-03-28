@@ -2,7 +2,7 @@ import { Express, Request, Response, NextFunction } from "express";
 import { NotFoundError } from "../types/http-errors";
 import { Gpio } from "onoff";
 
-namespace GpioManager {
+export namespace GpioManager {
     const GPIO_PINS = [4, 5, 6, 12, 13, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27];
 
     function readPin(pin: number): Promise<number> {
@@ -40,8 +40,8 @@ namespace GpioManager {
 
 export class GpioController {
     constructor(express: Express) {
-        express.get("/api/gpio", this.getAll);
-        express.get("/api/gpio/:pin", this.getPin);
+        express.get("/api/gpio", (req, res, next) => this.getAll(req, res, next));
+        express.get("/api/gpio/:pin", (req, res, next) => this.getPin(req, res, next));
     }
 
     private getAll(req: Request, res: Response, next: NextFunction): void {
@@ -50,6 +50,7 @@ export class GpioController {
         GpioManager.read()
             .then(result => {
                 res.status(200).json(result);
+                next();
             })
             .catch(err => next(err));
     }
@@ -61,6 +62,7 @@ export class GpioController {
         GpioManager.read(pin)
             .then(result => {
                 res.status(200).json(result);
+                next();
             })
             .catch(err => next(err));
     }
