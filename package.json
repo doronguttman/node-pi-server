@@ -23,7 +23,8 @@
   },
   "homepage": "https://github.com/doronguttman/node-pi-server#readme",
   "dependencies": {
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "onoff": "^2.0.0"
   },
   "devDependencies": {
     "@types/express": "^4.11.1",
