@@ -54,7 +54,7 @@ export class GpioController {
     }
 
     private getPin(req: Request, res: Response, next: NextFunction): void {
-        let pin = Number(req.param("pin"));
+        let pin = Number(req.params["pin"]);
 
         GpioManager.read(pin)
             .then(result => {
