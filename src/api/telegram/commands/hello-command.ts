@@ -1,14 +1,15 @@
 import TelegramBot from "node-telegram-bot-api";
 import TelegramCommandBase from "./command-base";
+import { CommandInfo } from "./command-info";
 
 class HelloCommand extends TelegramCommandBase {
-    public isMatch(msg: TelegramBot.Message): boolean {
-        return msg.text === "/hello";
+    public isMatch(commandInfo: CommandInfo): boolean {
+        return commandInfo.command === "/hello";
     }
 
-    public async execute(bot: TelegramBot, msg: TelegramBot.Message): Promise<TelegramBot.Message | Error> {
-        return await bot.sendMessage(msg.chat.id, `Hello ${msg.chat.username}`, {
-            reply_to_message_id: msg.message_id
+    public async execute(command: CommandInfo, bot: TelegramBot): Promise<TelegramBot.Message | Error> {
+        return await bot.sendMessage(command.chatId, `Hello ${command.username}`, {
+            reply_to_message_id: command.messageId
         })
     }
 }
